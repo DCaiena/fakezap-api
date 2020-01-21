@@ -3,8 +3,10 @@ const stringQuery = require('mongoose-string-query')
 const timesTamp = require('mongoose-timestamp')
 
 const chatSchema = new mongoose.Schema({
-    nome_usuario: String,
-    numero: String
+    user_one: String,
+    user_two: String,
+    lastMessager: String,
+    date: Date
 })
 
 chatSchema.plugin(stringQuery)

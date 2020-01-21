@@ -1,6 +1,8 @@
 const restify = require('restify')
 const mongoose = require('mongoose')
 
+const routes = require('./src/routes')
+
 let server = restify.createServer({
     name:"Chat",
     version:"1.0"
@@ -11,6 +13,7 @@ server.use(restify.plugins.bodyParser({mapParams:true}))
 server.use(restify.plugins.acceptParser(server.acceptable))
 server.use(restify.plugins.queryParser({mapParams:true}))
 
+routes(server)
 
 
 server.use((req, res, next) =>{

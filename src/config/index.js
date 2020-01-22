@@ -22,6 +22,21 @@ function serverConfig(server){
     server.listen(3333, () =>{
         console.log("escutando")
     })
+
+    const socketIo = require('socket.io')(server.server)
+
+    socketIo.on( 'connection', (socket) =>{
+        socket.on('lastMessager', any =>{
+            socket.emit()
+        })
+
+        socket.on('send', msg =>{
+            console.log('aqui1')
+            socket.emit('lastMessager', msg)
+        })
+    })
+
+
 }
 
 module.exports = serverConfig

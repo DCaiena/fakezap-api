@@ -4,10 +4,11 @@ const stringQuery = require('mongoose-string-query')
 
 
 const msgSchema = new mongoose.Schema({
+    sendBy: String,
     sender_id: String,
     recipient_id: String,
-    body: String
-
+    body: String,
+    date: Date
 })
 
 msgSchema.plugin(timesTamp)

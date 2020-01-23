@@ -23,18 +23,6 @@ function serverConfig(server){
         console.log("escutando")
     })
 
-    const socketIo = require('socket.io')(server.server)
-
-    socketIo.on( 'connection', (socket) =>{
-        socket.on('lastMessager', any =>{
-            socket.emit()
-        })
-
-        socket.on('send', msg =>{
-            console.log('aqui1')
-            socket.emit('lastMessager', msg)
-        })
-    })
 
 
 }

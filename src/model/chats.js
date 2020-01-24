@@ -7,7 +7,8 @@ const chatSchema = new mongoose.Schema({
     user_one: String,
     user_two: String,
     lastMessager_id: String ,
-    date: Date
+    date: Date,
+    msg:[]
 })
 
 chatSchema.plugin(stringQuery)

@@ -3,35 +3,23 @@ const MSG = require('../model/msg')
 const Chat = require('../model/chats')
 
 module.exports = {
-    async store(msg){
-        //na primeira menssagem é criado um chat 
-        //o chat possui os elementos 
-        //ele verifica se ja existe um chat com aqueles elementos, se n existir entao é criado o primeiro, se existir ele passa a armazernar informações la
+    async store(msg) {
         try {
-
-            let messager = await new MSG(msg).save()
-        
-            let thereIsChat = await Chat.findOne(
-            { 
-                user_one: msg.sender_id,
-                user_two: msg.recipient_id,
-            })
-            
-            if(!thereIsChat){
-                await new Chat({  
-                    user_one: msg.sender_id,
-                    user_two: msg.recipient_id,
-                    lastMessager_id: messager._id,
-                    date: new Date()
-                }).save()
-            }else{
-                await Chat.findByIdAndUpdate({_id: thereIsChat._id}, {lastMessager_id: messager._id})
-            }
+             await new MSG(msg).save()
             return msg
         } catch (error) {
             console.log(error)
         }
-      
     },
+    async index(data) {
+        let messages = await MSG.aggregate([{
+            $match:{$or: [
+                { sender_id: data.sender_id, recipient_id: data.recipient_id },
+                { sender_id: data.recipient_id, recipient_id: data.sender_id }
+            ]
+        }}]).sort({data})
+        console.log(messages)
+        return messages
+    }
 
 }

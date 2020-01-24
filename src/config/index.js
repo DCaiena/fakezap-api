@@ -15,7 +15,9 @@ function serverConfig(server){
         next()
     })
     //MONGO CONNECTION
-    mongoose.connect('mongodb+srv://caienawork:avatar@cluster0-to3u8.mongodb.net/chatApp?retryWrites=true&w=majority', { useCreateIndex:true, useFindAndModify:true, useNewUrlParser:true, useUnifiedTopology:true}, () =>{
+    //mongodb://localhost27017/chatApp
+    //mongodb+srv://caienawork:avatar@cluster0-to3u8.mongodb.net/chatApp?retryWrites=true&w=majority
+    mongoose.connect('mongodb://localhost:27017/chatApp', { useCreateIndex:true, useFindAndModify:true, useNewUrlParser:true, useUnifiedTopology:true}, () =>{
         console.log('Tá online')
     })
     //SERVER LISTEN
